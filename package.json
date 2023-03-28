@@ -1,0 +1,35 @@
+{
+  "name": "word-count",
+  "version": "0.0.1",
+  "publisher": "Yunier",
+  "engines": {
+    "vscode": "1.0.0"
+  },
+  "description": "Counts the number of words in a marrkdown or Quarto document",
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "markdown",
+        "extensions": [
+          ".md",
+          ".markdown"
+        ]
+      },
+      {
+        "id": "quarto",
+        "extensions": [
+          ".qmd"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "word-counter.countWords",
+        "title": "Markdown & Quarto Word Count"
+      }
+    ]
+  }
+}
