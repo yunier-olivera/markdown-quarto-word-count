@@ -1,6 +1,0 @@
----
-title: "Untitled"
-format: html
----
-
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat delectus autem nihil dolore, exercitationem et vitae, magni, expedita laudantium soluta nulla? Corrupti alias maxime deleniti, sint hic recusandae pariatur placeat?
