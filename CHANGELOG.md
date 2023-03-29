@@ -2,8 +2,6 @@
 
 All notable changes to the "markdown-quarto-word-count" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.1]
 
-## [Unreleased]
-
-- Initial release
+- Added word counting functionality for Markdown documents
