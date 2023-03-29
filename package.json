@@ -15,8 +15,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "markdown-quarto-word-count.helloWorld",
-        "title": "Hello World"
+        "command": "markdown-quarto-word-count.countWords",
+        "title": "Markdown & Quarto Word Count"
       }
     ]
   },
