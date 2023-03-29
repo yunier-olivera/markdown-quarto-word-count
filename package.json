@@ -13,6 +13,21 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "markdown",
+        "extensions": [
+          ".md",
+          ".markdown"
+        ]
+      },
+      {
+        "id": "quarto",
+        "extensions": [
+          ".qmd"
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "markdown-quarto-word-count.countWords",
