@@ -2,6 +2,7 @@
   "name": "markdown-quarto-word-count",
   "displayName": "Markdown & Quarto Word Count",
   "description": "Counts the number of words in Markdown and Quarto documents",
+  "publisher": "yunierolivera",
   "author": {
     "name": "Yunier Olivera"
   },
