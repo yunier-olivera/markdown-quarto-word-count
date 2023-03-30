@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
         // remove all line breaks
         text = text.replace(/[\r\n]/g, ' ');
 
-        // don't include yaml front matter
+        // do not include yaml front matter
         const threeDashes = text.match(/---/g);
         if (
           threeDashes &&
@@ -50,25 +50,25 @@ export function activate(context: vscode.ExtensionContext) {
           text = text.substring(yamlEnd + 1);
         }
 
-        // don't include text in code chunks
+        // do not include text in code chunks
         text = text.replace(/```{.+?}[\s\S]+?```/g, '');
 
-        // don't include text in in-line R code
+        // do not include text in in-line R code
         text = text.replace(/`r.+?`/g, '');
 
-        // don't include HTML comments
+        // do not include HTML comments
         text = text.replace(/<!--[\s\S]+?-->/g, '');
 
-        // don't include images with captions
+        // do not include images with captions
         text = text.replace(/!\[.+?\)/g, '');
 
-        // don't include inline markdown URLs
+        // do not include inline markdown URLs
         text = text.replace(/\(http.+?\)/g, '');
 
-        // don't include # for headings
+        // do not include # for headings
         text = text.replace(/#+/g, '');
 
-        // don't include opening HTML tags
+        // do not include opening HTML tags
         const htmlTags = require('./htmlTags.json').htmlTags;
         const htmlTagPattern = new RegExp(
           `<(${htmlTags.join('|')})[^>]*>`,
@@ -76,20 +76,20 @@ export function activate(context: vscode.ExtensionContext) {
         );
         text = text.replace(htmlTagPattern, '');
 
-        // don't include closing html tags
+        // do not include closing html tags
         text = text.replace(/<\/.+?>/g, '');
 
-        // don't include greater/less than signs
+        // do not include greater/less than signs
         text = text.replace(/[<>]/g, '');
 
-        // don't include percent signs because they trip up stringi
+        // do not include percent signs because they trip up stringi
         text = text.replace(/%/g, '');
 
-        // don't include figures and tables inserted using plain LaTeX code
+        // do not include figures and tables inserted using plain LaTeX code
         text = text.replace(/\\begin{figure\}[\s\S]*?\\end{figure}/g, '');
         text = text.replace(/\\begin{table\}[\s\S]*?\\end{table}/g, '');
 
-        // don't count abbreviations as multiple words, but leave
+        // do not count abbreviations as multiple words, but leave
         // the period at the end in case it's the end of a sentence
         text = text.replace(/\.(?=[a-z]+)/g, '');
         if (text.length === 0) {
