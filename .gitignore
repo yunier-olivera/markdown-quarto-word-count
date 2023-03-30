@@ -1,6 +1,18 @@
-out
-dist
-node_modules
-.vscode-test/
-*.vsix
+# Directories
+node_modules/
+out/
 tmp/
+.vscode-test/
+
+# Files
+*.log
+*.vsix
+.vscode/
+
+# TypeScript
+**/*.js
+**/*.js.map
+**/*.d.ts
+
+# Other
+yarn.lock
