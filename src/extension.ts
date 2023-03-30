@@ -5,10 +5,11 @@ import * as vscode from 'vscode';
 // TODO
 //  Update Change log and `package.json`
 //  Publish the extension
+//  Add a logo
 //  Make the extension appear in the lower bar
+//  Make the extension work with highligted text or text chuncks/sections
 //  Test the extension on other file types like HTLM
 //  Add shorcuts
-//  Add a logo
 //  Add screen shots
 //  Check this to include as credit to the repo you used
 //    Lastly, if the wordcountaddin repository is licensed under a particular open - source license, it's a good idea to clarify how your use of the code from this repository is also licensed under that same license. For example:
