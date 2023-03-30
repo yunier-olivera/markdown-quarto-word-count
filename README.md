@@ -1,4 +1,4 @@
-# word-count
+# Markdown & Quarto Word Count
 
 A VS Code extension that counts the number of words in a Markdown or Quarto document
 
