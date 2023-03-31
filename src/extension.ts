@@ -2,13 +2,15 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// [x] Update Change log and `package.json`
-// [x] Publish the extension
-// [x] Add a logo
-// [ ] Make the extension appear in the lower bar
-// [ ] Make the extension work with highligted text or text chuncks/sections
-// [ ] Add shorcuts
-// [ ] Add screen shots
+// [ ] Show extension on status bar
+// [ ] Add functionality to count words in selected text
+// [ ] Add screenshots
+// [ ] Add characters
+// [ ] Add reading time
+// [ ] Add speaking time
+// [ ] Add readability score?
+// [x] Update Change log
+// [x] Publish update, use `vsce publish major|minor|patch`
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
