@@ -1,7 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 import * as vscode from 'vscode';
 
-// [ ] Show extension on status bar
+// [x] Show extension on status bar
+// [ ] The status bar should be up date with the text
 // [ ] Add functionality to count words in selected text
 // [ ] Add screenshots
 // [ ] Add characters
@@ -14,6 +15,13 @@ import * as vscode from 'vscode';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  // Create a status bar item
+  const statusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    100
+  );
+  context.subscriptions.push(statusBarItem);
+
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
@@ -90,7 +98,9 @@ export function activate(context: vscode.ExtensionContext) {
 
         const wordCount = text.split(/\s+/).length;
 
-        vscode.window.showInformationMessage(`Word count: ${wordCount}`);
+        // vscode.window.showInformationMessage(`Word count: ${wordCount}`);
+        statusBarItem.text = `Word count: ${wordCount}`;
+        statusBarItem.show();
       }
     }
   );
