@@ -2,17 +2,13 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// [x] Update Change log and `package.json`~~
+// [x] Update Change log and `package.json`
 // [x] Publish the extension
-// [ ] Add a logo
+// [x] Add a logo
 // [ ] Make the extension appear in the lower bar
 // [ ] Make the extension work with highligted text or text chuncks/sections
-// [ ] Test the extension on other file types like HTLM
 // [ ] Add shorcuts
 // [ ] Add screen shots
-// [ ] Check this to include as credit to the repo you used
-//     Lastly, if the wordcountaddin repository is licensed under a particular open - source license, it's a good idea to clarify how your use of the code from this repository is also licensed under that same license. For example:
-//     "The wordcountaddin repository is licensed under the GPL-3.0 license. Our use of the code from this repository in this extension is also licensed under the GPL-3.0 license."
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
