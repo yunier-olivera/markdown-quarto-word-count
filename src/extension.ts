@@ -2,15 +2,16 @@
 import * as vscode from 'vscode';
 
 // [x] Show extension on status bar
-// [ ] The status bar should be up date with the text
+// [x] The status bar should be up date with the text
+// [ ] Optimize code
 // [ ] Add functionality to count words in selected text
 // [ ] Add screenshots
-// [ ] Add characters
+// [ ] Add character count
 // [ ] Add reading time
 // [ ] Add speaking time
 // [ ] Add readability score?
 // [x] Update Change log
-// [x] Publish update, use `vsce publish major|minor|patch`
+// [x] Publish update, use `vsce package` then `vsce publish major|minor|patch`
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
