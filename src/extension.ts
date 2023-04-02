@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
       try {
         const text = editor?.document.getText() ?? '';
         const preparedText = prepareText(text);
-        const wordCount = preparedText.split(/\s+/).length;
+        const wordCount = (preparedText.match(/\S+/g) || []).length;
 
         wordCountStatusBarItem.text = `Word count: ${wordCount}`;
         wordCountStatusBarItem.show();
@@ -41,17 +41,22 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Update the word count in the status bar
   function updateWordCountStatusBarItem(editor: vscode.TextEditor) {
-    const text = editor?.document.getText() ?? '';
+    const text = editor.document.getText();
     const preparedText = prepareText(text);
-    const wordCount = preparedText.split(/\s+/).length;
+    const wordCount = (preparedText.match(/\S+/g) || []).length;
 
     wordCountStatusBarItem.text = `Word count: ${wordCount}`;
-    wordCountStatusBarItem.show();
   }
 
   // Update the word count when the active editor changes
+  let activeEditor = vscode.window.activeTextEditor;
+  if (activeEditor) {
+    updateWordCountStatusBarItem(activeEditor);
+  }
+
   vscode.window.onDidChangeActiveTextEditor((editor) => {
-    if (editor) {
+    if (editor && editor !== activeEditor) {
+      activeEditor = editor;
       updateWordCountStatusBarItem(editor);
     }
   });
@@ -82,7 +87,7 @@ export function deactivate() {}
 
 // [x] Show extension on status bar
 // [x] The status bar should be up date with the text
-// [ ] Optimize code
+// [x] Optimize code
 // [ ] Add functionality to count words in selected text
 // [ ] Add screenshots
 // [ ] Add character count
