@@ -2,25 +2,14 @@ import * as vscode from 'vscode';
 
 // Prepare text by removing unwanted characters:
 function prepareText(text: string): string {
-  // remove YAML front matter
-  text = text.replace(/^---[\s\S]+?---/, '');
-
-  // remove code blocks
-  text = text.replace(/```[\s\S]+?```/g, '');
-
-  // remove inline code
-  text = text.replace(/`[^`]+?`/g, '');
-
-  // remove HTML tags
-  text = text.replace(/<[^>]+?>/g, '');
-
-  // remove punctuation and special characters
-  text = text.replace(/[^\w\s]|_/g, '');
-
-  // remove multiple whitespaces and line breaks
-  text = text.replace(/\s+/g, ' ').trim();
-
-  return text;
+  return text
+    .replace(/^---[\s\S]+?---/, '') // remove YAML front matter
+    .replace(/```[\s\S]+?```/g, '') // remove code blocks
+    .replace(/`[^`]+?`/g, '') // remove inline code
+    .replace(/<[^>]+?>/g, '') // remove HTML tags
+    .replace(/[^\w\s]|_/g, '') // remove punctuation and special characters
+    .replace(/\s+/g, ' ') // remove multiple whitespaces and line breaks
+    .trim();
 }
 
 let wordCountStatusBarItem: vscode.StatusBarItem;
