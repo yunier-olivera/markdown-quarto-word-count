@@ -57,9 +57,19 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   // Update the word count when the text in the active editor changes
+  let timer: NodeJS.Timer | undefined;
   vscode.workspace.onDidChangeTextDocument((event) => {
-    if (vscode.window.activeTextEditor) {
-      updateWordCountStatusBarItem(vscode.window.activeTextEditor);
+    if (
+      vscode.window.activeTextEditor &&
+      event.document === vscode.window.activeTextEditor.document
+    ) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        updateWordCountStatusBarItem(vscode.window.activeTextEditor!);
+        timer = undefined;
+      }, 500);
     }
   });
 
