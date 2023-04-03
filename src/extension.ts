@@ -12,27 +12,21 @@ function prepareText(text: string): string {
     .trim();
 }
 
-function countWords(selectedText: string): number {
-  const preparedText = prepareText(selectedText);
-  return (preparedText.match(/\S+/g) || []).length;
-}
-
 let wordCountStatusBarItem: vscode.StatusBarItem;
-let disposable: vscode.Disposable;
 
 export function activate(context: vscode.ExtensionContext) {
-  disposable = vscode.commands.registerCommand(
+  let disposable = vscode.commands.registerCommand(
     'markdown-quarto-word-count.countWords',
     () => {
       const editor = vscode.window.activeTextEditor;
       try {
-        if (editor) {
-          const selectedText = editor.document.getText(editor?.selection);
-          const wordCount = countWords(selectedText);
+        const selectedText = editor?.document.getText(editor.selection);
+        const text = selectedText || editor?.document.getText() || '';
+        const preparedText = prepareText(text);
+        const wordCount = (preparedText.match(/\S+/g) || []).length;
 
-          wordCountStatusBarItem.text = `Word count: ${wordCount}`;
-          wordCountStatusBarItem.show();
-        }
+        wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+        wordCountStatusBarItem.show();
       } catch (error: any) {
         vscode.window.showErrorMessage(error.message);
       }
@@ -89,5 +83,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(wordCountStatusBarItem);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
