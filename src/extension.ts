@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
       const editor = vscode.window.activeTextEditor;
       try {
         const selectedText = editor?.document.getText(editor.selection);
-        const text = selectedText || editor?.document.getText() || '';
+        const text = editor?.document.getText() || '';
         const preparedText = prepareText(text);
         const wordCount = (preparedText.match(/\S+/g) || []).length;
 
