@@ -27,9 +27,9 @@ export function activate(context: vscode.ExtensionContext) {
 
         if (selectedText) {
           const seletedWordCount = (selectedText.match(/\S+/g) || []).length;
-          wordCountStatusBarItem.text = `Word count: ${seletedWordCount} of ${wordCount}`;
+          wordCountStatusBarItem.text = `${seletedWordCount} of ${wordCount} words`;
         } else {
-          wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+          wordCountStatusBarItem.text = `${wordCount} words`;
         }
 
         wordCountStatusBarItem.show();
@@ -52,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
     const preparedText = prepareText(text);
     const wordCount = (preparedText.match(/\S+/g) || []).length;
 
-    wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+    wordCountStatusBarItem.text = `${wordCount} words`;
   }
 
   // Update the word count when the active editor changes
@@ -83,9 +83,9 @@ export function activate(context: vscode.ExtensionContext) {
       const selectedWordCount = (selectedText.match(/\S+/g) || []).length;
 
       if (selectedText) {
-        wordCountStatusBarItem.text = `Word count: ${selectedWordCount} of ${wordCount}`;
+        wordCountStatusBarItem.text = `${selectedWordCount} of ${wordCount} words`;
       } else {
-        wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+        wordCountStatusBarItem.text = `${wordCount} words`;
       }
 
       wordCountStatusBarItem.show();
@@ -94,7 +94,7 @@ export function activate(context: vscode.ExtensionContext) {
       const preparedText = prepareText(text);
       const wordCount = (preparedText.match(/\S+/g) || []).length;
 
-      wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+      wordCountStatusBarItem.text = `${wordCount}`;
       wordCountStatusBarItem.show();
     }
   });
