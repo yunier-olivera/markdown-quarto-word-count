@@ -68,6 +68,37 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
+  // Update the word count in the status bar when text is selected
+  vscode.window.onDidChangeTextEditorSelection((event) => {
+    if (
+      event.textEditor === activeEditor &&
+      event.selections.length &&
+      !event.selections[0].isEmpty
+    ) {
+      const selectedText = event.textEditor.document.getText(
+        event.selections[0]
+      );
+      const preparedText = prepareText(event.textEditor.document.getText());
+      const wordCount = (preparedText.match(/\S+/g) || []).length;
+      const selectedWordCount = (selectedText.match(/\S+/g) || []).length;
+
+      if (selectedText) {
+        wordCountStatusBarItem.text = `Word count: ${selectedWordCount} of ${wordCount}`;
+      } else {
+        wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+      }
+
+      wordCountStatusBarItem.show();
+    } else {
+      const text = event.textEditor.document.getText();
+      const preparedText = prepareText(text);
+      const wordCount = (preparedText.match(/\S+/g) || []).length;
+
+      wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+      wordCountStatusBarItem.show();
+    }
+  });
+
   // Update the word count when the text in the active editor changes
   let timer: NodeJS.Timer | undefined;
   vscode.workspace.onDidChangeTextDocument((event) => {
