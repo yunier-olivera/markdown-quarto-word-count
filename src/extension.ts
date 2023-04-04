@@ -25,7 +25,13 @@ export function activate(context: vscode.ExtensionContext) {
         const preparedText = prepareText(text);
         const wordCount = (preparedText.match(/\S+/g) || []).length;
 
-        wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+        if (selectedText) {
+          const seletedWordCount = (selectedText.match(/\S+/g) || []).length;
+          wordCountStatusBarItem.text = `Word count: ${seletedWordCount} of ${wordCount}`;
+        } else {
+          wordCountStatusBarItem.text = `Word count: ${wordCount}`;
+        }
+
         wordCountStatusBarItem.show();
       } catch (error: any) {
         vscode.window.showErrorMessage(error.message);
