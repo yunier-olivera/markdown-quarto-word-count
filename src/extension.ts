@@ -116,6 +116,12 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
+  if (vscode.window.activeTextEditor) {
+    updateWordCountStatusBarItem(vscode.window.activeTextEditor);
+  } else if (vscode.window.visibleTextEditors.length) {
+    updateWordCountStatusBarItem(vscode.window.visibleTextEditors[0]);
+  }
+
   // Register the status bar item
   context.subscriptions.push(wordCountStatusBarItem);
 }
