@@ -2,6 +2,10 @@
 
 All notable changes to the "markdown-quarto-word-count" extension are documented in this file.
 
+## [1.4.0] - 2023-04-04
+
+- Added functionality to count words of seleted text
+
 ## [1.3.0] - 2023-04-01
 
 - Minor performance optimization for response efficiency

@@ -4,7 +4,7 @@ VS Code extension that counts the number of words in a Markdown or Quarto docume
 
 The extension performs various text filtering to exclude certain elements such as code chunks, inline R code, HTML comments, and LaTeX figures and tables.
 
-The extension counts the remaining words and displays the count as an information message.
+The extension counts the remaining words and displays the count as an information message. It also automatically counts the number of words in any selected text.
 
 Some planned features for the extension include making it appear in the lower bar, adding shortcuts, and adding screenshots.
 
