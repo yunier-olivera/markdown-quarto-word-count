@@ -94,7 +94,7 @@ export function activate(context: vscode.ExtensionContext) {
       const preparedText = prepareText(text);
       const wordCount = (preparedText.match(/\S+/g) || []).length;
 
-      wordCountStatusBarItem.text = `${wordCount}`;
+      wordCountStatusBarItem.text = `${wordCount} words`;
       wordCountStatusBarItem.show();
     }
   });
