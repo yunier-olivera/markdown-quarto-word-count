@@ -1,14 +1,10 @@
 import * as vscode from 'vscode';
 
-// Prepare text by removing unwanted characters:
 function prepareText(text: string): string {
   return text
-    .replace(/^---[\s\S]+?---/, '') // remove YAML front matter
-    .replace(/```[\s\S]+?```/g, '') // remove code blocks
-    .replace(/`[^`]+?`/g, '') // remove inline code
-    .replace(/<[^>]+?>/g, '') // remove HTML tags
-    .replace(/[^\w\s]|_/g, '') // remove punctuation and special characters
-    .replace(/\s+/g, ' ') // remove multiple whitespaces and line breaks
+    .replace(/^---[\s\S]+?---|```[\s\S]+?```|`[^`]+?`|<[^>]+?>/g, '') // combine all regex patterns into one
+    .replace(/[^\w\s]|_/g, ' ') // replace punctuation and special characters with spaces
+    .replace(/\s+/g, ' ') // replace multiple whitespaces with one space
     .trim();
 }
 
