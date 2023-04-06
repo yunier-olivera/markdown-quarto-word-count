@@ -76,5 +76,3 @@ export function activate(context: vscode.ExtensionContext) {
   // Initialize the word count status bar item
   updateWordCount();
 }
-
-export function deactivate() {}
