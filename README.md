@@ -2,7 +2,7 @@
 
 This VS Code extension allows users to count the number of words in Markdown, Quarto, R Markdown, and plain text documents.
 
-The extension filters out several elements such as code chunks, inline R code, HTML comments, and LaTeX figures and tables to provide accurate word counts.
+The extension filters out several elements such as YAML metadata, code chunks, inline R code, HTML comments, and LaTeX figures and tables to provide accurate word counts.
 
 This extension can only count words in supported document types with the extensions `.md`, `.markdown`, `.qmd`, `.Rmd`, `.rmd`, and `.txt`.
 
