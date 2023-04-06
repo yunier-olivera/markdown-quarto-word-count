@@ -15,6 +15,16 @@ function updateWordCount() {
   if (!editor) {
     return;
   }
+  const languageId = editor.document.languageId;
+  if (
+    languageId !== 'markdown' &&
+    languageId !== 'plaintext' &&
+    languageId !== 'quarto' &&
+    languageId !== 'rmarkdown'
+  ) {
+    wordCountStatusBarItem.hide(); // hide the status bar item if the language is not supported
+    return;
+  }
   const text = editor.document.getText();
   const preparedText = prepareText(text);
   const wordCount = (preparedText.match(/\S+/g) || []).length;
