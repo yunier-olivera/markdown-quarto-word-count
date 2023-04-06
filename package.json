@@ -35,6 +35,19 @@
         "extensions": [
           ".qmd"
         ]
+      },
+      {
+        "id": "rmarkdown",
+        "extensions": [
+          ".Rmd",
+          ".rmd"
+        ]
+      },
+      {
+        "id": "plaintext",
+        "extensions": [
+          ".txt"
+        ]
       }
     ],
     "commands": [
