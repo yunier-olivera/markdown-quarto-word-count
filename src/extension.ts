@@ -42,68 +42,21 @@ export function activate(context: vscode.ExtensionContext) {
     'markdown-quarto-word-count.countWords',
     updateWordCount
   );
-
   context.subscriptions.push(disposable);
 
   wordCountStatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Left,
     100
   );
+  context.subscriptions.push(wordCountStatusBarItem);
 
-  // Update the word count in the status bar
-  function updateWordCountStatusBarItem(editor: vscode.TextEditor) {
-    const text = editor.document.getText();
-    const preparedText = prepareText(text);
-    const wordCount = (preparedText.match(/\S+/g) || []).length;
-
-    wordCountStatusBarItem.text = `${wordCount} words`;
-  }
-
-  // Update the word count when the active editor changes
-  let activeEditor = vscode.window.activeTextEditor;
-  if (activeEditor) {
-    updateWordCountStatusBarItem(activeEditor);
-  }
-
-  vscode.window.onDidChangeActiveTextEditor((editor) => {
-    if (editor && editor !== activeEditor) {
-      activeEditor = editor;
-      updateWordCountStatusBarItem(editor);
-    }
-  });
+  // Update the word count in the status bar when the active editor changes
+  vscode.window.onDidChangeActiveTextEditor(updateWordCount);
 
   // Update the word count in the status bar when text is selected
-  vscode.window.onDidChangeTextEditorSelection((event) => {
-    if (
-      event.textEditor === activeEditor &&
-      event.selections.length &&
-      !event.selections[0].isEmpty
-    ) {
-      const selectedText = event.textEditor.document.getText(
-        event.selections[0]
-      );
-      const preparedText = prepareText(event.textEditor.document.getText());
-      const wordCount = (preparedText.match(/\S+/g) || []).length;
-      const selectedWordCount = (selectedText.match(/\S+/g) || []).length;
+  vscode.window.onDidChangeTextEditorSelection(updateWordCount);
 
-      if (selectedText) {
-        wordCountStatusBarItem.text = `${selectedWordCount} of ${wordCount} words`;
-      } else {
-        wordCountStatusBarItem.text = `${wordCount} words`;
-      }
-
-      wordCountStatusBarItem.show();
-    } else {
-      const text = event.textEditor.document.getText();
-      const preparedText = prepareText(text);
-      const wordCount = (preparedText.match(/\S+/g) || []).length;
-
-      wordCountStatusBarItem.text = `${wordCount} words`;
-      wordCountStatusBarItem.show();
-    }
-  });
-
-  // Update the word count when the text in the active editor changes
+  // Update the word count in the status bar when the text in the active editor changes
   let timer: NodeJS.Timer | undefined;
   vscode.workspace.onDidChangeTextDocument((event) => {
     if (
@@ -114,20 +67,14 @@ export function activate(context: vscode.ExtensionContext) {
         clearTimeout(timer);
       }
       timer = setTimeout(() => {
-        updateWordCountStatusBarItem(vscode.window.activeTextEditor!);
+        updateWordCount();
         timer = undefined;
       }, 500);
     }
   });
 
-  if (vscode.window.activeTextEditor) {
-    updateWordCountStatusBarItem(vscode.window.activeTextEditor);
-  } else if (vscode.window.visibleTextEditors.length) {
-    updateWordCountStatusBarItem(vscode.window.visibleTextEditors[0]);
-  }
-
-  // Register the status bar item
-  context.subscriptions.push(wordCountStatusBarItem);
+  // Initialize the word count status bar item
+  updateWordCount();
 }
 
 export function deactivate() {}
