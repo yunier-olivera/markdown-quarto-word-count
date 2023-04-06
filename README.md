@@ -6,4 +6,4 @@ The extension performs various text filtering to exclude certain elements such a
 
 The extension counts the remaining words and displays the count as an information message. It also automatically counts the number of words in any selected text.
 
-This extension uses code from the `wordcountaddin` repository (https://github.com/benmarwick/wordcountaddin.git), an RStudio add-in for word counting. I'd like to thank the authors of this repository for their work.
+This extension was inspired by the `wordcountaddin` repository (https://github.com/benmarwick/wordcountaddin.git), an RStudio add-in for word counting. The regex used in this extension was developed based on the regex used in `wordcountaddin`. I'd like to thank the authors of that repository for their contributions.
