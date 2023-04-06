@@ -28,11 +28,10 @@ export function activate(context: vscode.ExtensionContext) {
           wordCountStatusBarItem.text = `${wordCount} words`;
         }
 
-        wordCountStatusBarItem.show();
-      } catch (error: any) {
-        vscode.window.showErrorMessage(error.message);
-      }
-    }
+export function activate(context: vscode.ExtensionContext) {
+  let disposable = vscode.commands.registerCommand(
+    'markdown-quarto-word-count.countWords',
+    updateWordCount
   );
 
   context.subscriptions.push(disposable);
