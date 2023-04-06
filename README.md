@@ -9,8 +9,10 @@ This extension can only count words in supported document types with the extensi
 ## Features
 
 - Counts the number of words in Markdown, Quarto, R Markdown, and plain text documents.
-
 - Automatically updates the word count in the status bar when the active editor changes, the text is selected, or the text in the active editor changes.
+
+  ![screenshots-status-bar](/images/screenshots-status-bar.png)
+
 - Filters out certain elements such as code chunks, inline R code, HTML comments, and LaTeX figures and tables to provide accurate word counts.
 
 ## Usage
@@ -19,6 +21,8 @@ To use this extension, open a Markdown, Quarto, R Markdown, or plain text docume
 
 - Press `Ctrl+Shift+P` (Windows, Linux) or `Cmd+Shift+P` (macOS) to open the Command Palette, and then type `Markdown & Quarto Word Count`.
 - Right-click on the text editor and select `Markdown & Quarto Word Count`.
+
+![screenshots-command-palette](images/screenshots-command-palette.png)
 
 The extension will display the word count in the status bar. If you have selected text in the editor, it will also show the number of selected words.
 
