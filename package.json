@@ -11,6 +11,14 @@
   "engines": {
     "vscode": "^1.76.0"
   },
+  "keywords": [
+    "word count",
+    "word counter",
+    "Markdown",
+    "RMarkdown",
+    "Quarto",
+    "text analysis"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
