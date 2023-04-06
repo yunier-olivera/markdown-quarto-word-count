@@ -10,23 +10,22 @@ function prepareText(text: string): string {
 
 let wordCountStatusBarItem: vscode.StatusBarItem;
 
-export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand(
-    'markdown-quarto-word-count.countWords',
-    () => {
-      const editor = vscode.window.activeTextEditor;
-      try {
-        const selectedText = editor?.document.getText(editor.selection);
-        const text = editor?.document.getText() || '';
-        const preparedText = prepareText(text);
-        const wordCount = (preparedText.match(/\S+/g) || []).length;
-
-        if (selectedText) {
-          const seletedWordCount = (selectedText.match(/\S+/g) || []).length;
-          wordCountStatusBarItem.text = `${seletedWordCount} of ${wordCount} words`;
-        } else {
-          wordCountStatusBarItem.text = `${wordCount} words`;
-        }
+function updateWordCount() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return;
+  }
+  const text = editor.document.getText();
+  const preparedText = prepareText(text);
+  const wordCount = (preparedText.match(/\S+/g) || []).length;
+  const selectedText = editor.document.getText(editor.selection);
+  const selectedWordCount = (selectedText.match(/\S+/g) || []).length;
+  const statusText = selectedText
+    ? `${selectedWordCount} of ${wordCount} words`
+    : `${wordCount} words`;
+  wordCountStatusBarItem.text = statusText;
+  wordCountStatusBarItem.show();
+}
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
