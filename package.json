@@ -1,7 +1,7 @@
 {
   "name": "markdown-quarto-word-count",
   "displayName": "Markdown & Quarto Word Count",
-  "description": "Counts the number of words in Markdown and Quarto documents",
+  "description": "Word counter for Markdown & Quarto documents",
   "icon": "images/logo.png",
   "publisher": "yunierolivera",
   "author": {
