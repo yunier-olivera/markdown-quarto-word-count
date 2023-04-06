@@ -4,9 +4,9 @@ All notable changes to the "markdown-quarto-word-count" extension are documented
 
 ## [1.5.0] - 2023-04-06
 
-- User Interface updates: logo update
+- Logo updated
+- Made significant simplifications to the codebase to improve word count accuracy and response efficiency
 - Added CONTRIBUTING.md file and updated README.md to reference it to improve the contribution process and documentation
-- Major code simplifications to improve word count accuracy and response efficiency
 
 ## [1.4.0] - 2023-04-04
 
