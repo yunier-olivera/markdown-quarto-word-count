@@ -27,9 +27,24 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onLanguage:plaintext",
+    "onLanguage:quarto",
+    "onLanguage:rmarkdown"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Markdown & Quarto Word Count",
+      "properties": {
+        "markdownQuartoWordCount.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the Markdown & Quarto Word Count extension"
+        }
+      }
+    },
     "languages": [
       {
         "id": "markdown",
