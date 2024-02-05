@@ -15,6 +15,20 @@ This extension can only count words in supported document types with the extensi
 
 - Filters out certain elements such as code chunks, inline R code, HTML comments, and LaTeX figures and tables to provide accurate word counts.
 
+## Configuration
+
+This extension supports enabling or disabling its functionality via VS Code settings. You can control whether the word count is displayed in the status bar for each project or globally across all projects.
+
+To enable or disable the extension, add the following setting to your `.vscode/settings.json` file for a specific project or to the global `settings.json` file:
+
+```json
+{
+  "markdownQuartoWordCount.enable": true
+}
+```
+
+Set the value to `false` if you wish to disable the word count functionality. This allows you to customize your workspace to suit your needs.
+
 ## Usage
 
 To use this extension, open a Markdown, Quarto, R Markdown, or plain text document in VS Code and run the `Markdown & Quarto Word Count` command using one of the following methods:
