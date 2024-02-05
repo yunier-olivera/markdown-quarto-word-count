@@ -11,6 +11,13 @@ function prepareText(text: string): string {
 let wordCountStatusBarItem: vscode.StatusBarItem;
 
 function updateWordCount() {
+  const isEnabled = vscode.workspace
+    .getConfiguration()
+    .get('markdownQuartoWordCount.enable');
+  if (!isEnabled) {
+    return; // Exit the function if the ext. disabled through settings
+  }
+
   const editor = vscode.window.activeTextEditor;
   if (!editor) {
     return;
