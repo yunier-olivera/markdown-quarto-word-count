@@ -2,6 +2,11 @@
 
 All notable changes to the "markdown-quarto-word-count" extension are documented in this file.
 
+## [1.6.0] - 2024-02-05
+
+- Added support for automatically enabling the extension either globally or within specific projects through VS Code settings
+- Updated README.md with instructions on how to configure automatic activation of the extension
+
 ## [1.5.0] - 2023-04-06
 
 - Logo updated
