@@ -2,6 +2,13 @@
 
 All notable changes to the "markdown-quarto-word-count" extension are documented in this file.
 
+## [1.9.2] - 2024-04-19
+
+- Added support for hyphenated words, counting them as single words.
+- Improved accuracy by treating decimal numbers as single words.
+- Enhanced handling of contractions and possessives with apostrophe support.
+- Fixed inconsistencies in word count between selected and non-selected text.
+
 ## [1.9.1] - 2024-02-05
 
 - Added support for automatically enabling the extension either globally or within specific projects through VS Code settings
