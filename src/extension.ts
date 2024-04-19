@@ -1,11 +1,17 @@
 import * as vscode from 'vscode';
 
 function prepareText(text: string): string {
-  return text
-    .replace(/^---[\s\S]+?---|```[\s\S]+?```|`[^`]+?`|<[^>]+?>/g, '') // combine all regex patterns into one
-    .replace(/[^\w\s]|_/g, ' ') // replace punctuation and special characters with spaces
-    .replace(/\s+/g, ' ') // replace multiple whitespaces with one space
-    .trim();
+  return (
+    text
+      // Remove markdown syntax, code blocks, inline code, and HTML tags
+      .replace(/^---[\s\S]+?---|```[\s\S]+?```|`[^`]+?`|<[^>]+?>/g, '')
+      // Replace non-word characters except for hyphens, periods, and apostrophes
+      .replace(/[^\w\s-.']|_/g, ' ')
+      // Collapse multiple whitespaces into one space
+      .replace(/\s+/g, ' ')
+      // Trim leading and trailing spaces
+      .trim()
+  );
 }
 
 let wordCountStatusBarItem: vscode.StatusBarItem;
