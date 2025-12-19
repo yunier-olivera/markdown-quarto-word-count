@@ -13,3 +13,5 @@ vsc-extension-quickstart.md
 **/*.ts
 tmp/
 help.md
+test-*.md
+CLAUDE.md

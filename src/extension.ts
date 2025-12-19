@@ -42,7 +42,8 @@ function updateWordCount() {
   const preparedText = prepareText(text);
   const wordCount = (preparedText.match(/\S+/g) || []).length;
   const selectedText = editor.document.getText(editor.selection);
-  const selectedWordCount = (selectedText.match(/\S+/g) || []).length;
+  const preparedSelectedText = prepareText(selectedText);
+  const selectedWordCount = (preparedSelectedText.match(/\S+/g) || []).length;
   const statusText = selectedText
     ? `${selectedWordCount} of ${wordCount} words`
     : `${wordCount} words`;

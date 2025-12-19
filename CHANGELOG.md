@@ -2,6 +2,11 @@
 
 All notable changes to the "markdown-quarto-word-count" extension are documented in this file.
 
+## [1.9.3] - 2024-12-19
+
+- Fixed bug where HTML comments and their markers were incorrectly counted in selected text
+- Selected text now properly filters out code blocks, inline code, HTML tags, and comments before counting
+
 ## [1.9.2] - 2024-04-19
 
 - Added support for hyphenated words, counting them as single words.
