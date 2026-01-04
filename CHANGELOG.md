@@ -2,6 +2,12 @@
 
 All notable changes to the "markdown-quarto-word-count" extension are documented in this file.
 
+## [1.10.0] - 2026-01-03
+
+- Added Unicode support for international languages (French, Spanish, Portuguese, German, and more)
+- Improved word counting accuracy for accented characters and diacritics
+- Enhanced marketplace discoverability with expanded keywords
+
 ## [1.9.3] - 2024-12-19
 
 - Fixed bug where HTML comments and their markers were incorrectly counted in selected text

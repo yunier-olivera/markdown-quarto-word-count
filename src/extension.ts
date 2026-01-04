@@ -6,7 +6,8 @@ function prepareText(text: string): string {
       // Remove markdown syntax, code blocks, inline code, and HTML tags
       .replace(/^---[\s\S]+?---|```[\s\S]+?```|`[^`]+?`|<[^>]+?>/g, '')
       // Replace non-word characters except for hyphens, periods, and apostrophes
-      .replace(/[^\w\s-.']|_/g, ' ')
+      // Use Unicode property escapes to support accented characters in all languages
+      .replace(/[^\p{L}\p{N}\s.'\-]|_/gu, ' ')
       // Collapse multiple whitespaces into one space
       .replace(/\s+/g, ' ')
       // Trim leading and trailing spaces
