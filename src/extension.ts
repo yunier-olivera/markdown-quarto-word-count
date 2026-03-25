@@ -4,7 +4,7 @@ function prepareText(text: string): string {
   return (
     text
       // Remove markdown syntax, code blocks, inline code, and HTML tags
-      .replace(/^---[\s\S]+?---|```[\s\S]+?```|`[^`]+?`|<[^>]+?>/g, '')
+      .replace(/^---[\s\S]+?---|```[\s\S]+?```|\$\$[\s\S]+?\$\$|\$[^$\n]+?\$|`[^`]+?`|<!--[\s\S]*?-->|<[a-zA-Z/][^\n>]*>/g, '')
       // Replace non-word characters except for hyphens, periods, and apostrophes
       // Use Unicode property escapes to support accented characters in all languages
       .replace(/[^\p{L}\p{N}\s.'\-]|_/gu, ' ')

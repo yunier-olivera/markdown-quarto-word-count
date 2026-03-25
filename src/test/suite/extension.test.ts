@@ -1,12 +1,11 @@
 import * as assert from 'assert';
-import * as vscode from 'vscode';
 
 // Helper function to count words in prepared text (same logic as extension)
 function prepareText(text: string): string {
   return (
     text
       // Remove markdown syntax, code blocks, inline code, and HTML tags
-      .replace(/^---[\s\S]+?---|```[\s\S]+?```|`[^`]+?`|<[^>]+?>/g, '')
+      .replace(/^---[\s\S]+?---|```[\s\S]+?```|\$\$[\s\S]+?\$\$|\$[^$\n]+?\$|`[^`]+?`|<!--[\s\S]*?-->|<[a-zA-Z/][^\n>]*>/g, '')
       // Replace non-word characters except for hyphens, periods, and apostrophes
       // Use Unicode property escapes to support accented characters in all languages
       .replace(/[^\p{L}\p{N}\s.'\-]|_/gu, ' ')
@@ -23,8 +22,6 @@ function countWords(text: string): number {
 }
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
-
 	suite('Unicode and Accented Characters (New Fix)', () => {
 		test('Spanish words with accents should count as single words', () => {
 			assert.strictEqual(countWords('pingüino'), 1);
@@ -80,10 +77,64 @@ suite('Extension Test Suite', () => {
 		});
 	});
 
+	suite('Inline and Block Math Removal (v1.10.1)', () => {
+		test('inline math is removed from word count', () => {
+			assert.strictEqual(countWords('The value $x < 1$ is small'), 4);
+			assert.strictEqual(countWords('hello $\\alpha + \\beta$ world'), 2);
+		});
+
+		test('block math is removed from word count', () => {
+			assert.strictEqual(countWords('before\n$$\nx = y + z\n$$\nafter'), 2);
+		});
+
+		test('multiple inline math expressions on one line are all removed', () => {
+			assert.strictEqual(countWords('$a$ plus $b$ equals $c$'), 2);
+		});
+	});
+
 	suite('HTML Comments Removal (v1.9.3)', () => {
 		test('HTML comments should be removed from text', () => {
 			assert.strictEqual(countWords('Hello <!-- comment --> world'), 2);
 			assert.strictEqual(countWords('<!-- This is a comment -->Text here'), 2);
+		});
+	});
+
+	suite('Bare < character does not consume subsequent words (v1.10.1)', () => {
+		// Each text has 4 lines: "hello world foo bar" (4), "hello world $x < 1$ foo bar"
+		// ($x < 1$ fully stripped as inline math = 4), "hello world <!-- comment --> foo bar"
+		// (comment removed = 4), "hello world < foo bar" (< stripped = 4). Total = 16.
+		test('bare < on last line does not drop any words', () => {
+			const text = 'hello world foo bar\n\nhello world $x < 1$ foo bar\n\nhello world <!-- comment --> foo bar\n\nhello world < foo bar';
+			assert.strictEqual(countWords(text), 16);
+		});
+
+		test('bare < on third line does not drop the fourth line', () => {
+			const text = 'hello world foo bar\n\nhello world $x < 1$ foo bar\n\nhello world < foo bar\n\nhello world <!-- comment --> foo bar';
+			assert.strictEqual(countWords(text), 16);
+		});
+
+		test('bare < on second line does not drop third and fourth lines', () => {
+			const text = 'hello world foo bar\n\nhello world < foo bar\n\nhello world $x < 1$ foo bar\n\nhello world <!-- comment --> foo bar';
+			assert.strictEqual(countWords(text), 16);
+		});
+
+		test('bare < on first line does not drop everything after it', () => {
+			const text = 'hello world < foo bar\n\nhello world foo bar\n\nhello world $x < 1$ foo bar\n\nhello world <!-- comment --> foo bar';
+			assert.strictEqual(countWords(text), 16);
+		});
+
+		// < stripped as non-word char, <!-- comment --> fully removed → 8 words remain
+		test('bare < and <!-- comment --> on same line do not consume words between them', () => {
+			assert.strictEqual(countWords('hello world < foo bar hello world <!-- comment --> foo bar'), 8);
+		});
+
+		test('multiline HTML comment is fully removed without affecting surrounding words', () => {
+			assert.strictEqual(countWords('before\n<!--\nmulti\nline\n-->\nafter'), 2);
+		});
+
+		// < is stripped as a non-word character, leaving 2 words
+		test('bare < with no closing > anywhere is treated as a literal character', () => {
+			assert.strictEqual(countWords('a < b'), 2);
 		});
 	});
 

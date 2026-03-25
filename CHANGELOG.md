@@ -2,6 +2,13 @@
 
 All notable changes to the "markdown-quarto-word-count" extension are documented in this file.
 
+## [1.10.1] - 2026-03-25
+
+- Fixed bare `<` character causing all words on subsequent lines to be dropped from the word count
+- Fixed inline math expressions (`$...$` and `$$...$$`) being incorrectly included in the word count
+- Improved HTML tag stripping to only match valid tags (starting with a letter or `/`)
+- HTML comments (`<!-- ... -->`) now handled by a dedicated pattern, preventing cross-line consumption
+
 ## [1.10.0] - 2026-01-03
 
 - Added Unicode support for international languages (French, Spanish, Portuguese, German, and more)
